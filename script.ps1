@@ -1,2 +1,1 @@
-Write-Host "Salut!"
-Start-Process "notepad.exe"
+Start-Process "https://asistentapsihologica.rf.gd"
