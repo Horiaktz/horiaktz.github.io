@@ -3,11 +3,11 @@ $targetFolder = "$HOME\HoriaktzMarketTerminal"
 
 # 2. Dacă proiectul nu există local, îl descărcăm de pe GitHub
 if (-not (Test-Path $targetFolder)) {
-    Write-Host "[*] Terminalul nu a fost găsit local. Îl descărcăm de pe GitHub..." -ForegroundColor Yellow
+    Write-Host "[*] Terminalul nu a fost gasit local. Il descarcam de pe GitHub..." -ForegroundColor Yellow
     if (Get-Command git -ErrorAction SilentlyContinue) {
         git clone https://github.com/Horiaktz/HoriaktzMarketTerminal.git $targetFolder
     } else {
-        Write-Host "[*] Git nu este instalat. Descărcăm codul sursă direct..." -ForegroundColor Yellow
+        Write-Host "[*] Git nu este instalat. Descarcam codul sursa direct..." -ForegroundColor Yellow
         $zipPath = "$env:TEMP\terminal.zip"
         Invoke-RestMethod -Uri "https://github.com/Horiaktz/HoriaktzMarketTerminal/archive/refs/heads/main.zip" -OutFile $zipPath
         Expand-Archive -Path $zipPath -DestinationPath "$env:TEMP\terminal_extract" -Force
@@ -42,14 +42,14 @@ if (-not $pythonValid) {
             $env:Path += ";$env:LocalAppData\Programs\Python\Python311;$env:LocalAppData\Programs\Python\Python311\Scripts"
         }
     } else {
-        Write-Host "[🔴] Winget nu a fost găsit. Te rog instalează Python manual din Microsoft Store sau python.org ca să poți continua!" -ForegroundColor Red
+        Write-Host "[🔴] Winget nu a fost gasit. Te rog instaleaza Python manual din Microsoft Store sau python.org ca sa poti continua!" -ForegroundColor Red
         return
     }
 }
 
 # 5. Managementul Mediului Virtual (.venv)
 if (-not (Test-Path ".\.venv")) {
-    Write-Host "[*] Se creează mediul virtual separat (.venv)..." -ForegroundColor Yellow
+    Write-Host "[*] Se creeaza mediul virtual separat (.venv)..." -ForegroundColor Yellow
     python -m venv .venv
 }
 
@@ -57,7 +57,7 @@ if (-not (Test-Path ".\.venv")) {
 .\.venv\Scripts\Activate.ps1
 
 # 6. Instalam dependințele în interiorul mediului izolat
-Write-Host "[*] Se instalează/verifică dependințele necesare (yfinance, requests)..." -ForegroundColor Yellow
+Write-Host "[*] Se instaleaza/verifica dependintele necesare (yfinance, requests)..." -ForegroundColor Yellow
 python -m pip install --upgrade pip --quiet
 if (Test-Path "requirements.txt") {
     pip install -r requirements.txt --quiet
